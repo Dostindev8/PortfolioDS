@@ -32,7 +32,7 @@ export default function ProjectCard({
 
   return (
     <motion.article
-      className="project-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow)] transition duration-300 hover:-translate-y-1"
+      className="project-card group relative isolate flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow)] ring-1 ring-black/5 transition duration-300 hover:-translate-y-1.5 hover:shadow-xl dark:ring-white/5"
       style={{ "--project-accent": accent }}
     >
       <a

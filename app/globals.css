@@ -14,7 +14,7 @@
   --radius: 1rem;
   --shadow: 0 12px 40px rgba(15, 20, 25, 0.08);
   --motion: 200ms;
-  --nav-h: 4.75rem;
+  --nav-h: 5.25rem;
   --font-display: var(--font-display-face), "Source Serif 4", Georgia, serif;
   --font-body: var(--font-body-face), "Figtree", system-ui, sans-serif;
 }
@@ -280,43 +280,68 @@ body {
   }
 }
 
-/* Footer doves — vuelo lento derecha↔izquierda */
-@keyframes fly-loop {
+/* Footer doves — GPU-only (transform), seamless loop, visible on mobile */
+@keyframes dove-fly {
   0% {
-    left: -8%;
-    transform: translateY(0) scaleX(-1);
+    transform: translate3d(-12vw, 0, 0) scaleX(-1);
+  }
+  25% {
+    transform: translate3d(28vw, -10px, 0) scaleX(-1);
   }
   49% {
-    left: 104%;
-    transform: translateY(-6px) scaleX(-1);
+    transform: translate3d(108vw, 4px, 0) scaleX(-1);
   }
   50% {
-    left: 104%;
-    transform: translateY(-6px) scaleX(1);
+    transform: translate3d(108vw, 4px, 0) scaleX(1);
   }
-  99% {
-    left: -8%;
-    transform: translateY(0) scaleX(1);
+  75% {
+    transform: translate3d(40vw, -8px, 0) scaleX(1);
   }
   100% {
-    left: -8%;
-    transform: translateY(0) scaleX(-1);
+    transform: translate3d(-12vw, 0, 0) scaleX(1);
   }
 }
 
 .footer-dove {
-  animation-name: fly-loop;
+  left: 0;
+  animation-name: dove-fly;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  will-change: transform, left;
+  will-change: transform;
   transform: translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .footer-dove {
     animation: none !important;
-    left: 12% !important;
-    opacity: 0.12 !important;
+    transform: translate3d(12vw, 0, 0) !important;
+    opacity: 0.14 !important;
+  }
+}
+
+/* Skills floating cards */
+@keyframes skill-icon-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+.skill-card-float {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card-float {
+    animation: none !important;
+  }
+  .skill-icon-glow {
+    animation: none !important;
   }
 }
 

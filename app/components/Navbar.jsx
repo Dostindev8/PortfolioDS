@@ -1,13 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import {
+  Briefcase,
+  Code2,
+  FolderKanban,
+  Home,
+  Linkedin,
+  Mail,
+  Menu,
+  User,
+  X,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { SiGithub } from "react-icons/si";
 import { useI18n } from "@/app/components/providers/AppProviders";
 import ThemeToggle from "@/app/components/ui/ThemeToggle";
 import LanguageSwitcher from "@/app/components/ui/LanguageSwitcher";
-import { LCS_LOGO, LCS_NAME, LCS_URL } from "@/lib/brand";
+import { LCS_LOGO, LCS_NAME, LCS_URL, SOCIAL } from "@/lib/brand";
+
+const NAV_ICONS = [Home, User, Briefcase, FolderKanban, Code2, Mail];
 
 export default function Navbar() {
   const { t } = useI18n();
@@ -15,6 +28,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [activeHash, setActiveHash] = useState("#home");
+  const menuBtnRef = useRef(null);
+  const drawerRef = useRef(null);
 
   const menuItems = [
     { label: t.nav.home, href: "/#home" },
@@ -64,6 +79,36 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) {
+      menuBtnRef.current?.focus?.();
+      return;
+    }
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+    const focusables = drawer.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    first?.focus?.();
+
+    const onTab = (e) => {
+      if (e.key !== "Tab" || focusables.length === 0) return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus?.();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus?.();
+      }
+    };
+    drawer.addEventListener("keydown", onTab);
+    return () => drawer.removeEventListener("keydown", onTab);
+  }, [menuOpen]);
+
+  const year = new Date().getFullYear();
+
   return (
     <>
       <AnimatePresence>
@@ -102,10 +147,10 @@ export default function Navbar() {
             <Image
               src={LCS_LOGO}
               alt={LCS_NAME}
-              width={72}
-              height={72}
+              width={80}
+              height={80}
               priority
-              className="h-12 w-12 object-contain sm:h-14 sm:w-14"
+              className="h-14 w-14 object-contain md:h-12 md:w-12 lg:h-14 lg:w-14"
             />
             <span className="hidden min-w-0 flex-col leading-tight sm:flex">
               <span className="text-sm font-semibold tracking-tight text-[var(--fg)]">
@@ -142,12 +187,15 @@ export default function Navbar() {
           </ul>
 
           <div className="relative z-50 flex items-center gap-2">
-            <LanguageSwitcher />
-            <ThemeToggle />
+            <div className="hidden sm:contents">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
             <button
+              ref={menuBtnRef}
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] lg:hidden"
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] lg:hidden"
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
             >
@@ -162,32 +210,140 @@ export default function Navbar() {
           <>
             <motion.button
               type="button"
-              aria-label="Close menu overlay"
+              aria-label="Cerrar menú"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setMenuOpen(false)}
             />
             <motion.aside
+              ref={drawerRef}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 280, damping: 28 }}
-              className="fixed top-0 right-0 z-40 flex h-dvh w-[min(20rem,85vw)] flex-col gap-6 border-l border-[var(--border)] bg-[var(--bg-elevated)] px-6 pt-24 pb-8 lg:hidden"
+              className="fixed top-0 right-0 z-40 flex h-dvh w-[min(21rem,88vw)] flex-col border-l border-[var(--border)] bg-[var(--bg-elevated)]/95 backdrop-blur-xl lg:hidden"
               role="dialog"
               aria-modal="true"
+              aria-label="Menú de navegación"
             >
-              {menuItems.map((item) => (
+              <div className="flex items-center justify-between gap-3 border-b border-white/5 px-5 py-4">
                 <a
-                  key={item.href}
-                  href={item.href}
+                  href={LCS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3"
                   onClick={() => setMenuOpen(false)}
-                  className="text-xl font-semibold text-[var(--fg)] transition hover:text-[var(--accent)] active:scale-95"
+                  aria-label={LCS_NAME}
                 >
-                  {item.label}
+                  <Image
+                    src={LCS_LOGO}
+                    alt={LCS_NAME}
+                    width={72}
+                    height={72}
+                    className="h-14 w-14 object-contain"
+                  />
+                  <span className="flex min-w-0 flex-col leading-tight">
+                    <span className="text-sm font-semibold text-[var(--fg)]">
+                      Logic Code Spot
+                    </span>
+                    <span className="text-[10px] text-[var(--fg-muted)]">
+                      Software Solutions
+                    </span>
+                  </span>
                 </a>
-              ))}
+                <div className="flex items-center gap-2">
+                  <LanguageSwitcher />
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)]"
+                    aria-label="Cerrar menú"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto px-4 py-4" aria-label="Mobile">
+                <ul className="flex flex-col">
+                  {menuItems.map((item, i) => {
+                    const hash = item.href.replace("/", "");
+                    const isActive = activeHash === hash;
+                    const Icon = NAV_ICONS[i] || Home;
+                    return (
+                      <motion.li
+                        key={item.href}
+                        initial={{ opacity: 0, x: 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.05 * i, duration: 0.28 }}
+                        className="border-b border-white/5 last:border-0"
+                      >
+                        <a
+                          href={item.href}
+                          onClick={() => setMenuOpen(false)}
+                          className={`flex min-h-14 items-center gap-3 rounded-xl px-3 py-3 text-base font-semibold transition ${
+                            isActive
+                              ? "bg-[var(--accent-soft)] text-[var(--accent)] shadow-[inset_0_0_0_1px_var(--accent)]"
+                              : "text-[var(--fg)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent)]"
+                          }`}
+                        >
+                          <Icon
+                            size={18}
+                            className={`shrink-0 transition ${isActive ? "translate-x-0.5" : "group-hover:translate-x-0.5"}`}
+                            aria-hidden
+                          />
+                          {item.label}
+                        </a>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              <div
+                className="mt-auto border-t border-white/5 px-5 pt-4"
+                style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
+              >
+                <ul className="mb-3 flex items-center justify-center gap-3">
+                  <li>
+                    <a
+                      href={SOCIAL.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_16px_rgba(59,130,246,0.35)]"
+                    >
+                      <SiGithub size={18} />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={SOCIAL.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_16px_rgba(59,130,246,0.35)]"
+                    >
+                      <Linkedin size={18} />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={SOCIAL.email}
+                      aria-label="Email"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_16px_rgba(59,130,246,0.35)]"
+                    >
+                      <Mail size={18} />
+                    </a>
+                  </li>
+                </ul>
+                <p className="text-center text-[11px] text-[var(--fg-muted)]/70">
+                  © {year} Logic Code Spot. Todos los derechos reservados.
+                </p>
+              </div>
             </motion.aside>
           </>
         )}

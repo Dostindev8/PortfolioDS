@@ -108,35 +108,33 @@
     "items": [
       {
         "title": "Web Development",
-        "desc": "Modern websites and web apps using React, Next.js and TypeScript.",
+        "desc": "Modern websites and apps built with React, Next.js and TypeScript, optimized for speed and SEO. Responsive, accessible interfaces ready to scale from day one.",
         "icon": "Globe"
       },
       {
         "title": "Backend Development",
-        "desc": "RESTful APIs and microservices with Node.js, Express and .NET.",
+        "desc": "Robust REST APIs and microservices with Node.js, Express and .NET, designed for performance and security. Scalable architecture with JWT auth, rate limiting and full documentation.",
         "icon": "Server"
       },
       {
         "title": "E-commerce Solutions",
-        "desc": "Scalable online stores with payments, inventory and dashboards.",
+        "desc": "Scalable online stores with payment gateways, inventory management and real-time admin dashboards. A smooth, secure shopping experience optimized for conversion.",
         "icon": "ShoppingCart"
       },
       {
         "title": "Enterprise Systems",
-        "desc": "Business systems: invoicing, ERP, dashboards and custom solutions.",
+        "desc": "Custom invoicing, ERP and dashboards that digitize and automate your company's internal processes. Robust, secure solutions tailored to your real workflow.",
         "icon": "Building2"
       },
       {
         "title": "AI Agents for Business",
-        "desc": "Design and development of custom AI agents that automate operational tasks, customer support, data processing and workflows — integrated directly into custom systems (ERP, CRM, invoicing, e-commerce) so your business runs with less friction and more speed.",
-        "icon": "Bot",
-        "tags": ["AI Agents", "Automation", "Custom integrations", "LLMs", "MCP"]
+        "desc": "Design and development of custom AI agents that automate repetitive tasks and strengthen decision-making. Integration with Claude, GPT and Gemini under a multi-provider approach.",
+        "icon": "Bot"
       },
       {
         "title": "Systems Audit & ERP",
-        "desc": "Technical software audits, custom ERP implementation and security hardening for enterprise systems — focused on quality, traceability and compliance.",
-        "icon": "ShieldCheck",
-        "tags": ["Technical audit", "ERP", "Hardening", "OWASP", "RBAC"]
+        "desc": "Technical software audits, custom ERP implementation and security hardening to protect your infrastructure. We identify vulnerabilities and optimize system performance.",
+        "icon": "ShieldCheck"
       }
     ]
   },
@@ -255,7 +253,7 @@
       },
       {
         "name": "AI & Dev Tools",
-        "items": ["Claude", "ChatGPT", "Gemini", "Cursor Agent/Composer", "Antigravity", "MCP Integrations", "Prompt Engineering"]
+        "items": ["Claude", "ChatGPT", "Gemini", "Cursor Agent", "Antigravity", "MCP Integrations", "Prompt Engineering"]
       },
       {
         "name": "Other",
@@ -267,7 +265,7 @@
       },
       {
         "name": "Cloud & DevOps",
-        "items": ["Git & GitHub", "Docker", "Vercel", "Netlify", "CI/CD", "AWS (basic)", "Postman", "Swagger"]
+        "items": ["Git & GitHub", "Docker", "Vercel", "Netlify", "CI/CD", "Postman", "Swagger"]
       }
     ]
   },

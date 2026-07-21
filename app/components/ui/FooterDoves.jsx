@@ -1,13 +1,13 @@
 "use client";
 
 /**
- * FooterDoves — siluetas mínimas en azul de marca (--accent).
- * z-0, pointer-events-none, overflow contenido en el footer.
+ * FooterDoves — siluetas en azul de marca.
+ * Animación 100% transform (GPU). Visibles en móvil (sin hidden breakpoints).
  */
 const DOVES = [
-  { top: "18%", duration: 34, delay: 0, size: 1, className: "hidden sm:block" },
-  { top: "48%", duration: 40, delay: 8, size: 0.85, className: "" },
-  { top: "72%", duration: 30, delay: 14, size: 0.75, className: "hidden md:block" },
+  { top: "16%", duration: 22, delay: 0, size: 0.85 },
+  { top: "42%", duration: 28, delay: 5, size: 1 },
+  { top: "68%", duration: 34, delay: 11, size: 0.72 },
 ];
 
 function DoveSVG({ className = "", style }) {
@@ -49,11 +49,11 @@ export default function FooterDoves() {
       {DOVES.map((d, i) => (
         <DoveSVG
           key={i}
-          className={`footer-dove absolute opacity-[0.22] ${d.className}`}
+          className="footer-dove absolute opacity-[0.2] sm:opacity-[0.24]"
           style={{
             top: d.top,
-            width: `${Math.round(44 * d.size)}px`,
-            height: `${Math.round(28 * d.size)}px`,
+            width: `${Math.round(36 * d.size)}px`,
+            height: `${Math.round(23 * d.size)}px`,
             animationDuration: `${d.duration}s`,
             animationDelay: `${d.delay}s`,
           }}

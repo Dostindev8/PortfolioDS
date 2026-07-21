@@ -56,9 +56,13 @@ export default function Work() {
         ))}
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 items-stretch gap-8 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
         {filtered.map((project, i) => (
-          <SectionReveal key={project.slug} delay={0.04 * Math.min(i, 5)}>
+          <SectionReveal
+            key={project.slug}
+            delay={0.04 * Math.min(i, 5)}
+            className="h-full"
+          >
             <ProjectCard
               project={project}
               viewLabel={w.viewDetails}

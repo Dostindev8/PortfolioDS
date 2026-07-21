@@ -108,35 +108,33 @@
     "items": [
       {
         "title": "Sviluppo Web",
-        "desc": "Siti e web app moderne con React, Next.js e TypeScript.",
+        "desc": "Siti e applicazioni web moderne con React, Next.js e TypeScript, ottimizzate per velocità e SEO. Interfacce responsive, accessibili e pronte a scalare dal primo giorno.",
         "icon": "Globe"
       },
       {
         "title": "Backend Development",
-        "desc": "API REST e microservizi con Node.js, Express e .NET.",
+        "desc": "API REST e microservizi solidi con Node.js, Express e .NET, progettati per prestazioni e sicurezza. Architettura scalabile con autenticazione JWT, rate limiting e documentazione completa.",
         "icon": "Server"
       },
       {
         "title": "Soluzioni E-commerce",
-        "desc": "Negozi scalabili con pagamenti, inventario e dashboard.",
+        "desc": "Negozi online scalabili con gateway di pagamento, gestione inventario e dashboard admin in tempo reale. Esperienza d'acquisto fluida, sicura e ottimizzata per la conversione.",
         "icon": "ShoppingCart"
       },
       {
         "title": "Sistemi Aziendali",
-        "desc": "Fatturazione, ERP, dashboard e soluzioni custom.",
+        "desc": "Sistemi di fatturazione, ERP e dashboard su misura che digitalizzano e automatizzano i processi interni. Soluzioni robuste, sicure e adattate al tuo flusso di lavoro reale.",
         "icon": "Building2"
       },
       {
         "title": "Agenti IA per il business",
-        "desc": "Progettazione e sviluppo di agenti di intelligenza artificiale personalizzati che automatizzano attività operative, assistenza clienti, elaborazione dati e flussi di lavoro — integrati direttamente nei sistemi su misura (ERP, CRM, fatturazione, e-commerce) per far operare il tuo business con meno attrito e maggiore velocità.",
-        "icon": "Bot",
-        "tags": ["Agenti IA", "Automazione", "Integrazioni su misura", "LLM", "MCP"]
+        "desc": "Progettazione e sviluppo di agenti di intelligenza artificiale personalizzati che automatizzano attività ripetitive e migliorano le decisioni. Integrazione con Claude, GPT e Gemini multi-provider.",
+        "icon": "Bot"
       },
       {
         "title": "Audit di Sistemi & ERP",
-        "desc": "Audit tecnici del software, implementazione ERP su misura e hardening di sicurezza per sistemi aziendali — con focus su qualità, tracciabilità e conformità.",
-        "icon": "ShieldCheck",
-        "tags": ["Audit tecnico", "ERP", "Hardening", "OWASP", "RBAC"]
+        "desc": "Audit tecnici del software, implementazione ERP su misura e hardening di sicurezza per proteggere la tua infrastruttura. Individuiamo vulnerabilità e ottimizziamo le prestazioni.",
+        "icon": "ShieldCheck"
       }
     ]
   },
@@ -193,7 +191,7 @@
       },
       {
         "name": "IA & Dev Tools",
-        "items": ["Claude", "ChatGPT", "Gemini", "Cursor Agent/Composer", "Antigravity", "MCP Integrations", "Prompt Engineering"]
+        "items": ["Claude", "ChatGPT", "Gemini", "Cursor Agent", "Antigravity", "MCP Integrations", "Prompt Engineering"]
       },
       {
         "name": "Altro",
@@ -205,7 +203,7 @@
       },
       {
         "name": "Cloud & DevOps",
-        "items": ["Git & GitHub", "Docker", "Vercel", "Netlify", "CI/CD", "AWS (base)", "Postman", "Swagger"]
+        "items": ["Git & GitHub", "Docker", "Vercel", "Netlify", "CI/CD", "Postman", "Swagger"]
       }
     ]
   },

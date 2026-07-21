@@ -41,39 +41,27 @@ export default function Services() {
         </p>
       </SectionReveal>
 
-      <div className="mx-auto mt-12 grid max-w-6xl auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-12 grid max-w-6xl auto-rows-fr grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {s.items.map((item, i) => {
           const iconKey = item.icon || DEFAULT_ICONS[i] || "Globe";
           const Icon = ICON_MAP[iconKey] || Globe;
           return (
             <SectionReveal key={item.title} delay={0.05 * i} className="h-full">
-              <article className="flex h-full min-h-[17.5rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 transition hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-[var(--shadow)]">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent)]/25 bg-[var(--accent-soft)] text-[var(--accent)]">
+              <article className="flex h-full min-h-[18.5rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)] transition hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg hover:shadow-blue-500/10">
+                <div className="mb-4 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--accent)]/25 bg-[var(--accent-soft)] text-[var(--accent)]">
                   <Icon size={20} aria-hidden />
                 </div>
                 <h3 className="font-display text-lg font-semibold text-[var(--fg)]">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--fg-muted)]">
-                  {item.desc}
-                </p>
-                <div className="mt-3 min-h-[1.75rem]">
-                  {item.tags?.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--accent)]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                <div className="mt-2 flex flex-1 flex-col">
+                  <p className="text-sm leading-relaxed text-[var(--fg-muted)]">
+                    {item.desc}
+                  </p>
                 </div>
                 <a
                   href="#contactme"
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)]"
+                  className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[var(--accent)] transition hover:gap-2"
                 >
                   {s.learnMore}
                   <ArrowRight size={14} aria-hidden />
